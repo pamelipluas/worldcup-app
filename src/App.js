@@ -12,6 +12,7 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">Welcome to World Cup App</h1>
                 </header>
+                <Dashboard/>
             </div>
         );
     }

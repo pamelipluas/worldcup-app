@@ -26,3 +26,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.card {
+  border-radius: .25rem;
+  box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+  margin-bottom: 30px;
+  padding: 25px;
+}
