@@ -83,7 +83,6 @@ class Dashboard extends Component {
     }
 
     render() {
-        console.log(this.getEarliestGoal());
         return (
             <div className="row">
                 <div className="col-sm">
