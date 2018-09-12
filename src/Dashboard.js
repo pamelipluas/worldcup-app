@@ -29,43 +29,36 @@ class Dashboard extends Component {
 
     getNumberOfCountries() {
         const matches = this.state.data;
-        const countries = [];
         return matches
             .map(match => match.home_team_country)
-            .filter(country => {
-                if (countries.includes(country)) {
-                    return false;
-                }
-                countries.push(country);
-                return true;
-            })
-            .reduce((acc => ++acc), 0);
+            .reduce((countries, country) => countries.includes(country) ? countries : [...countries, country], [])
+            .length;
     }
 
     getNumberOfGoals() {
         const matches = this.state.data;
         return matches
             .map(match => match.home_team.goals + match.away_team.goals)
-            .reduce(((acc, goals) => acc + goals), 0);
+            .reduce(((previousGoal, currentGoal) => previousGoal + currentGoal), 0);
     }
 
     getNumberOfGoalsAfter90Min() {
         const matches = this.state.data;
         return matches
-            .reduce((acc, match) => [...acc, ...match.home_team_events, ...match.away_team_events], [])
+            .reduce((previousMatch, currentMatch) => [...previousMatch, ...currentMatch.home_team_events, ...currentMatch.away_team_events], [])
             .filter(event => event.type_of_event === 'goal')
             .filter(goal => goal.time.includes('90\'+'))
-            .reduce((acc => ++acc), 0);
+            .reduce((goalAmount => ++goalAmount), 0);
     }
 
     getEarliestGoal() {
         const matches = this.state.data;
         return matches
-            .reduce((acc, match) => [...acc, ...match.home_team_events, ...match.away_team_events], [])
+            .reduce((previousMatch, currentMatch) => [...previousMatch, ...currentMatch.home_team_events, ...currentMatch.away_team_events], [])
             .filter(event => event.type_of_event === 'goal')
             .filter(goal => !goal.time.includes('90\'+'))
             .map(goal => goal.time.replace('\'', ''))
-            .reduce((acc, time) => Math.min(acc, parseInt(time)), 100);
+            .reduce((previousTime, currentTime) => Math.min(previousTime, parseInt(currentTime)), 100);
     }
 
     getNumberOfHomeEvents() {
@@ -79,7 +72,7 @@ class Dashboard extends Component {
         const matches = this.state.data;
         return matches
             .map(match => parseInt(match.weather.temp_celsius))
-            .reduce((acc, celsius) => Math.max(acc, celsius), 0);
+            .reduce((previousTemperature, currentTemperature) => Math.max(previousTemperature, currentTemperature), 0);
     }
 
     render() {
