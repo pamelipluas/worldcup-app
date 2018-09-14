@@ -3,8 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import './App.css';
 import Dashboard from "./Dashboard";
+import {connect} from "react-redux";
 
-class App extends Component {
+const actions = require('./redux/actions');
+
+
+export class App extends Component {
+
+    componentDidMount(){
+        this.props.fetchWorldCupData();
+    }
+
     render() {
         return (
             <div className="App container">
@@ -18,4 +27,5 @@ class App extends Component {
     }
 }
 
-export default App;
+
+export default connect((state)=>{return state},actions)(App);
