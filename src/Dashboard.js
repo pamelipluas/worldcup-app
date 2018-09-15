@@ -1,8 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import './App.css';
 import Card from "./Card";
-import {getNumberOfCountries} from "./models/Countries";
+import {getNumberOfCountries} from "./controlers/Countries";
 import {connect} from "react-redux";
+import {getEarliestGoal, getNumberOfGoals, getNumberOfGoalsAfter90Min} from "./controlers/Goals";
+import {getNumberOfHomeEvents} from "./controlers/Events";
+import {getHighestTemperature} from "./controlers/Tempratures";
 
 const actions = require('./redux/actions');
 
@@ -12,10 +15,18 @@ class Dashboard extends Component {
 
         console.log('aaa', this.props.worldCupData);
         return (
-            <div className="row">
-                <Card title="Number of matches " value={this.props.worldCupData.length}/>
-                <Card title="Number of countries " value={getNumberOfCountries(this.props.worldCupData)}/>
-                <Card />
+            <div>
+                <div className="row">
+                    <Card title="Number of matches " value={this.props.worldCupData.length}/>
+                    <Card title="Number of countries " value={getNumberOfCountries(this.props.worldCupData)}/>
+                    <Card title="Number of goals" value={getNumberOfGoals(this.props.worldCupData)}/>
+                    <Card title="Number of goals after min 90" value={getNumberOfGoalsAfter90Min(this.props.worldCupData)}/>
+                </div>
+                <div className="row">
+                    <Card title="Time of earliest goal " value={getEarliestGoal(this.props.worldCupData)}/>
+                    <Card title="Number of home events " value={getNumberOfHomeEvents(this.props.worldCupData)}/>
+                    <Card title="Highest temperature" value={getHighestTemperature(this.props.worldCupData)}/>
+                </div>
             </div>
         );
     }

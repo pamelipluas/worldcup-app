@@ -1,5 +1,5 @@
 import constants from './constants';
-import {getWorldCupData} from "../models/Data";
+import {getWorldCupData} from "../controlers/Data";
 
 export const startFetchingData = () => {
     return {

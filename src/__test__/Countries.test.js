@@ -1,4 +1,4 @@
-import * as countries from "../models/Countries";
+import * as countries from "../controlers/Countries";
 
 describe('Countries', () => {
     const spyGetNumberOfCountries = jest.spyOn(countries, 'getNumberOfCountries');

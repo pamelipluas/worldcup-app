@@ -1,5 +1,5 @@
 import mockAxios from 'axios';
-import { getWorldCupData } from '../models/Data';
+import { getWorldCupData } from '../controlers/Data';
 
 describe('Data', () => {
     it('should get data from the worldcup API', async () => {
