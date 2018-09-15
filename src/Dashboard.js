@@ -5,7 +5,7 @@ import {getNumberOfCountries} from "./controlers/Countries";
 import {connect} from "react-redux";
 import {getEarliestGoal, getNumberOfGoals, getNumberOfGoalsAfter90Min} from "./controlers/Goals";
 import {getNumberOfHomeEvents} from "./controlers/Events";
-import {getHighestTemperature} from "./controlers/Tempratures";
+import {getHighestTemperature} from "./controlers/Temperatures";
 
 const actions = require('./redux/actions');
 
