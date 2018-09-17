@@ -3,7 +3,7 @@ import './App.css';
 import Card from "./Card";
 import {getNumberOfCountries} from "./controlers/Countries";
 import {connect} from "react-redux";
-import {getEarliestGoal, getNumberOfGoals, getNumberOfGoalsAfter90Min} from "./controlers/Goals";
+import {getEarliestGoal, getNumberOfGoalsAfter90Min, getNumberOfGoals} from "./controlers/Goals";
 import {getNumberOfHomeEvents} from "./controlers/Events";
 import {getHighestTemperature} from "./controlers/Temperatures";
 
