@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
     render() {
 
-        console.log('aaa', this.props.worldCupData);
+        console.log('world cup data', this.props.worldCupData);
         return (
             <div>
                 <div className="row">
