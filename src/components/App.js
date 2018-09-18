@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../assets/logo.svg';
+import '../styles/App.css';
 import Dashboard from "./Dashboard";
 import {connect} from "react-redux";
 
-const actions = require('./redux/actions');
+const actions = require('../redux/actions');
 
 
 export class App extends Component {

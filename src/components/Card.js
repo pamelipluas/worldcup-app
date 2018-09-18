@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import '../styles/App.css';
 
 const Card = ({title, value}) => (
     <div className="col-sm card">

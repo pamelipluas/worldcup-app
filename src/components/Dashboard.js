@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from 'react';
-import './App.css';
+import '../styles/App.css';
 import Card from "./Card";
-import {getNumberOfCountries} from "./controlers/Countries";
+import {getNumberOfCountries} from "../controlers/Countries";
 import {connect} from "react-redux";
-import {getEarliestGoal, getNumberOfGoalsAfter90Min, getNumberOfGoals} from "./controlers/Goals";
-import {getNumberOfHomeEvents} from "./controlers/Events";
-import {getHighestTemperature} from "./controlers/Temperatures";
+import {getEarliestGoal, getNumberOfGoalsAfter90Min, getNumberOfGoals} from "../controlers/Goals";
+import {getNumberOfHomeEvents} from "../controlers/Events";
+import {getHighestTemperature} from "../controlers/Temperatures";
 
-const actions = require('./redux/actions');
+const actions = require('../redux/actions');
 
 class Dashboard extends Component {
 
