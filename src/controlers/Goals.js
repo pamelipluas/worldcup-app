@@ -1,45 +1,63 @@
-
-
-function getNumberOfGoalsPerMatch(data)
-{
-    return data.map(match => match.home_team.goals + match.away_team.goals);
+function getNumberOfGoalsPerMatch(data) {
+  return data.map(match => match.home_team.goals + match.away_team.goals);
 }
 
-function addGoals(previousGoal, currentGoal)
-{
-    return previousGoal + currentGoal;
+function addGoals(previousGoal, currentGoal) {
+  return previousGoal + currentGoal;
 }
 
 export const getNumberOfGoals = (data) => {
-    return getNumberOfGoalsPerMatch(data).reduce(addGoals, 0);
+  return getNumberOfGoalsPerMatch(data).reduce(addGoals, 0);
 };
 
-function getMatches(previousMatch, currentMatch){
-     return [...previousMatch, ...currentMatch.home_team_events, ...currentMatch.away_team_events]
+function getMatches(previousMatch, currentMatch) {
+  return [...previousMatch, ...currentMatch.home_team_events, ...currentMatch.away_team_events];
 }
 
-function getEvent(currentEvent){
-    return currentEvent.type_of_event === 'goal';
+function getEvent(currentEvent) {
+  return currentEvent.type_of_event === 'goal';
 }
 
-function getGoalAfterMin90(goal){
-    return !goal.time.includes('90\'+')
+function getGoalAfterMin90(goal) {
+  return !goal.time.includes('90\'+');
 }
 
+function reduceGetMatches(data) {
+  return data.reduce(getMatches, []);
+}
+
+function getFilteredEvents(data) {
+  return data.filter(getEvent);
+}
+
+function getFilteredAfterMin90(data) {
+  return data.filter(getGoalAfterMin90);
+}
+
+function geTimeReplaced(data) {
+  return data.map(goal => goal.time.replace('\'', ''));
+}
+
+function getTimeOfEarliestGoal(data) {
+  return data.reduce((previousTime, currentTime) => Math.min(previousTime, parseInt(currentTime)),
+    100);
+}
+
+function getGoalsAfterMin90(data){
+  return data.reduce((goalAmount => ++goalAmount), 0);
+}
 
 export const getNumberOfGoalsAfter90Min = (data) => {
-    return data
-        .reduce(getMatches, [])
-        .filter(getEvent)
-        .filter(getGoalAfterMin90)
-        .reduce((goalAmount => ++goalAmount), 0);
+  const matches = reduceGetMatches(data);
+  const filterEvents = getFilteredEvents(matches);
+  const filterGoalsAfter90 = getFilteredAfterMin90(filterEvents);
+  return getGoalsAfterMin90(filterGoalsAfter90);
 };
 
 export const getEarliestGoal = (data) => {
-    return data
-        .reduce(getMatches, [])
-        .filter(getEvent)
-        .filter(getGoalAfterMin90)
-        .map(goal => goal.time.replace('\'', ''))
-        .reduce((previousTime, currentTime) => Math.min(previousTime, parseInt(currentTime)), 100);
+  const matches = reduceGetMatches(data);
+  const filterEvents = getFilteredEvents(matches);
+  const filterGoalsAfter90 = getFilteredAfterMin90(filterEvents);
+  const timeReplaced = geTimeReplaced(filterGoalsAfter90);
+  return getTimeOfEarliestGoal(timeReplaced);
 };
