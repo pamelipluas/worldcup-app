@@ -12,8 +12,6 @@ const actions = require('../redux/actions');
 class Dashboard extends Component {
 
     render() {
-
-        console.log('world cup data', this.props.worldCupData);
         return (
             <div>
                 <div className="row">

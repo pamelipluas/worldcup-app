@@ -15,7 +15,7 @@ export function getEvent(currentEvent) {
 }
 
 export function getGoalAfterMin90(goal) {
-  return !goal.time.includes('90\'+');
+  return goal.time.includes('90\'+');
 }
 
 export function reduceGetMatches(data) {
