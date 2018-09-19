@@ -18,6 +18,10 @@ export function getGoalAfterMin90(goal) {
   return goal.time.includes('90\'+');
 }
 
+export function getGoalBeforeMin90(goal) {
+    return !goal.time.includes('90\'+');
+}
+
 export function reduceGetMatches(data) {
   return data.reduce(getMatches, []);
 }
@@ -28,6 +32,10 @@ export function getFilteredEvents(data) {
 
 export function getFilteredAfterMin90(data) {
   return data.filter(getGoalAfterMin90);
+}
+
+export function getFilteredBeforeMin90(data) {
+    return data.filter(getGoalBeforeMin90);
 }
 
 export function geTimeReplaced(data) {
@@ -57,7 +65,7 @@ export const getNumberOfGoalsAfter90Min = (data) => {
 export const getEarliestGoal = (data) => {
   const matches = reduceGetMatches(data);
   const filterEvents = getFilteredEvents(matches);
-  const filterGoalsAfter90 = getFilteredAfterMin90(filterEvents);
-  const timeReplaced = geTimeReplaced(filterGoalsAfter90);
+  const filterGoalsBefore90 = getFilteredBeforeMin90(filterEvents);
+  const timeReplaced = geTimeReplaced(filterGoalsBefore90);
   return getTimeOfEarliestGoal(timeReplaced);
 };
